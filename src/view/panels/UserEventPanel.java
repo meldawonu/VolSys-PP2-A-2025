@@ -12,6 +12,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  * Panel untuk user melihat dan mendaftar ke events
@@ -78,7 +79,7 @@ public class UserEventPanel extends JPanel {
         searchField = StyleUtils.createTextField(20);
         searchField.setPreferredSize(new Dimension(200, 35));
 
-        JButton searchButton = StyleUtils.createStyledButton("🔍 Cari", StyleUtils.PRIMARY_COLOR);
+        JButton searchButton = StyleUtils.createStyledButton("Cari", StyleUtils.PRIMARY_COLOR);
         searchButton.addActionListener(e -> searchData());
 
         searchPanel.add(searchField);
@@ -89,8 +90,8 @@ public class UserEventPanel extends JPanel {
         JPanel actionPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
         actionPanel.setBackground(Color.WHITE);
 
-        JButton registerButton = StyleUtils.createStyledButton("✅ Daftar", StyleUtils.SUCCESS_COLOR, 120, 35);
-        JButton refreshButton = StyleUtils.createStyledButton("🔄 Refresh", StyleUtils.SECONDARY_COLOR);
+        JButton registerButton = StyleUtils.createStyledButton("Daftar", StyleUtils.SUCCESS_COLOR, 120, 35);
+        JButton refreshButton = StyleUtils.createStyledButton("Refresh", StyleUtils.SECONDARY_COLOR);
 
         registerButton.addActionListener(e -> registerToEvent());
         refreshButton.addActionListener(e -> loadData());
@@ -112,6 +113,31 @@ public class UserEventPanel extends JPanel {
 
         eventTable = new JTable(tableModel);
         StyleUtils.styleTable(eventTable);
+
+        eventTable.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                setBackground(Color.lightGray);
+                setForeground(Color.BLACK);
+                setHorizontalAlignment(JLabel.CENTER);
+                return this;
+            }
+        });
+
+        eventTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                if (!isSelected) {
+                    c.setBackground(row % 2 == 0 ? Color.WHITE : Color.LIGHT_GRAY);
+                } else {
+                    c.setBackground(Color.blue);
+                }
+                return c;
+            }
+        });
+
         eventTable.getTableHeader().setBackground(StyleUtils.SUCCESS_COLOR);
 
         // Column widths
@@ -140,7 +166,7 @@ public class UserEventPanel extends JPanel {
         rightPanel.setBackground(Color.WHITE);
         rightPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        JLabel descLabel = new JLabel("📝 Deskripsi Event");
+        JLabel descLabel = new JLabel("Deskripsi Event");
         descLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
         descLabel.setForeground(StyleUtils.DARK_COLOR);
 
@@ -217,12 +243,12 @@ public class UserEventPanel extends JPanel {
 
             if (event != null) {
                 StringBuilder sb = new StringBuilder();
-                sb.append("📌 ").append(event.getTitle()).append("\n\n");
-                sb.append("📍 Lokasi: ").append(event.getLocation() != null ? event.getLocation() : "-").append("\n\n");
-                sb.append("📅 Tanggal: ")
+                sb.append("Sematkan").append(event.getTitle()).append("\n\n");
+                sb.append("Lokasi: ").append(event.getLocation() != null ? event.getLocation() : "-").append("\n\n");
+                sb.append("Tanggal: ")
                         .append(event.getEventDate() != null ? event.getEventDate().toString().substring(0, 16) : "-")
                         .append("\n\n");
-                sb.append("📝 Deskripsi:\n")
+                sb.append("Deskripsi:\n")
                         .append(event.getDescription() != null ? event.getDescription() : "Tidak ada deskripsi");
 
                 descriptionArea.setText(sb.toString());

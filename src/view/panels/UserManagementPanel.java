@@ -6,6 +6,7 @@ import utils.StyleUtils;
 import view.dialogs.UserFormDialog;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
@@ -51,7 +52,7 @@ public class UserManagementPanel extends JPanel {
         searchField = StyleUtils.createTextField(20);
         searchField.setPreferredSize(new Dimension(200, 35));
 
-        JButton searchButton = StyleUtils.createStyledButton("🔍 Cari", StyleUtils.PRIMARY_COLOR);
+        JButton searchButton = StyleUtils.createStyledButton("Cari", StyleUtils.PRIMARY_COLOR);
         searchButton.addActionListener(e -> searchData());
 
         searchPanel.add(searchField);
@@ -62,10 +63,10 @@ public class UserManagementPanel extends JPanel {
         JPanel actionPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
         actionPanel.setBackground(Color.WHITE);
 
-        JButton addButton = StyleUtils.createStyledButton("➕ Tambah", StyleUtils.SUCCESS_COLOR);
-        JButton editButton = StyleUtils.createStyledButton("✏️ Edit", StyleUtils.WARNING_COLOR);
-        JButton deleteButton = StyleUtils.createStyledButton("🗑️ Hapus", StyleUtils.DANGER_COLOR);
-        JButton refreshButton = StyleUtils.createStyledButton("🔄 Refresh", StyleUtils.SECONDARY_COLOR);
+        JButton addButton = StyleUtils.createStyledButton("Tambah", StyleUtils.SUCCESS_COLOR);
+        JButton editButton = StyleUtils.createStyledButton("Edit", StyleUtils.WARNING_COLOR);
+        JButton deleteButton = StyleUtils.createStyledButton("Hapus", StyleUtils.DANGER_COLOR);
+        JButton refreshButton = StyleUtils.createStyledButton("Refresh", StyleUtils.SECONDARY_COLOR);
 
         addButton.addActionListener(e -> showAddDialog());
         editButton.addActionListener(e -> showEditDialog());
@@ -91,6 +92,30 @@ public class UserManagementPanel extends JPanel {
 
         userTable = new JTable(tableModel);
         StyleUtils.styleTable(userTable);
+
+        userTable.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                setBackground(Color.lightGray);
+                setForeground(Color.BLACK);
+                setHorizontalAlignment(JLabel.CENTER);
+                return this;
+            }
+        });
+
+        userTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                if (!isSelected) {
+                    c.setBackground(row % 2 == 0 ? Color.WHITE : Color.LIGHT_GRAY);
+                } else {
+                    c.setBackground(Color.BLUE);
+                }
+                return c;
+            }
+        });
 
         // Column widths
         userTable.getColumnModel().getColumn(0).setPreferredWidth(50);

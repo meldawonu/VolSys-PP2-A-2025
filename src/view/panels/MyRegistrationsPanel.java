@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.io.File;
 import java.util.List;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  * Panel untuk user melihat events yang diikuti
@@ -67,7 +68,7 @@ public class MyRegistrationsPanel extends JPanel {
         JPanel infoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
         infoPanel.setBackground(Color.WHITE);
 
-        JLabel infoLabel = new JLabel("👤 " + currentUser.getFullName());
+        JLabel infoLabel = new JLabel("user" + currentUser.getFullName());
         infoLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         infoLabel.setForeground(StyleUtils.DARK_COLOR);
         infoPanel.add(infoLabel);
@@ -76,9 +77,9 @@ public class MyRegistrationsPanel extends JPanel {
         JPanel actionPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
         actionPanel.setBackground(Color.WHITE);
 
-        JButton cancelButton = StyleUtils.createStyledButton("❌ Batalkan", StyleUtils.DANGER_COLOR);
-        JButton exportButton = StyleUtils.createStyledButton("📄 Export PDF", StyleUtils.PURPLE_COLOR, 110, 35);
-        JButton refreshButton = StyleUtils.createStyledButton("🔄 Refresh", StyleUtils.SECONDARY_COLOR);
+        JButton cancelButton = StyleUtils.createStyledButton("Batalkan", StyleUtils.DANGER_COLOR);
+        JButton exportButton = StyleUtils.createStyledButton("Export PDF", StyleUtils.PURPLE_COLOR, 110, 35);
+        JButton refreshButton = StyleUtils.createStyledButton("Refresh", StyleUtils.SECONDARY_COLOR);
 
         cancelButton.addActionListener(e -> cancelRegistration());
         exportButton.addActionListener(e -> exportToPDF());
@@ -102,6 +103,31 @@ public class MyRegistrationsPanel extends JPanel {
 
         registrationTable = new JTable(tableModel);
         StyleUtils.styleTable(registrationTable);
+
+        registrationTable.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                setBackground(Color.lightGray);
+                setForeground(Color.BLACK);
+                setHorizontalAlignment(JLabel.CENTER);
+                return this;
+            }
+        });
+
+        registrationTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                if (!isSelected) {
+                    c.setBackground(row % 2 == 0 ? Color.WHITE : Color.LIGHT_GRAY);
+                } else {
+                    c.setBackground(Color.blue);
+                }
+                return c;
+            }
+        });
+
         registrationTable.getTableHeader().setBackground(StyleUtils.PURPLE_COLOR);
 
         // Column widths
@@ -136,15 +162,15 @@ public class MyRegistrationsPanel extends JPanel {
                 BorderFactory.createLineBorder(new Color(200, 200, 200)),
                 BorderFactory.createEmptyBorder(10, 20, 10, 20)));
 
-        totalLabel = new JLabel("📊 Total Partisipasi: 0");
+        totalLabel = new JLabel("Total Partisipasi: 0");
         totalLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
         totalLabel.setForeground(StyleUtils.DARK_COLOR);
 
-        pendingLabel = new JLabel("⏳ Pending: 0");
+        pendingLabel = new JLabel("Pending: 0");
         pendingLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         pendingLabel.setForeground(new Color(180, 140, 0));
 
-        approvedLabel = new JLabel("✅ Approved: 0");
+        approvedLabel = new JLabel("Approved: 0");
         approvedLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         approvedLabel.setForeground(new Color(30, 130, 76));
 
@@ -179,9 +205,9 @@ public class MyRegistrationsPanel extends JPanel {
         }
 
         // Update statistics
-        totalLabel.setText("📊 Total Partisipasi: " + registrations.size());
-        pendingLabel.setText("⏳ Pending: " + pending);
-        approvedLabel.setText("✅ Approved: " + approved);
+        totalLabel.setText("Total Partisipasi: " + registrations.size());
+        pendingLabel.setText("Pending: " + pending);
+        approvedLabel.setText("Approved: " + approved);
     }
 
     private void cancelRegistration() {

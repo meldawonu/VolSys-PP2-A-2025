@@ -70,7 +70,7 @@ public class LoginFrame extends JFrame {
         JLabel emailLabel = new JLabel("Email");
         emailLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         emailLabel.setForeground(new Color(50, 50, 50));
-        emailLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        emailLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         emailField = new JTextField();
         emailField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -86,7 +86,7 @@ public class LoginFrame extends JFrame {
         JLabel passwordLabel = new JLabel("Password");
         passwordLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         passwordLabel.setForeground(new Color(50, 50, 50));
-        passwordLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        passwordLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         passwordField = new JPasswordField();
         passwordField.setFont(new Font("Segoe UI", Font.PLAIN, 14));

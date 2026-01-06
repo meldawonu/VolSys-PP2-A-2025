@@ -72,7 +72,7 @@ public class RegisterFrame extends JFrame {
         JLabel nameLabel = new JLabel("Nama Lengkap");
         nameLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         nameLabel.setForeground(new Color(50, 50, 50));
-        nameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         fullNameField = createTextField();
 
@@ -80,7 +80,7 @@ public class RegisterFrame extends JFrame {
         JLabel emailLabel = new JLabel("Email");
         emailLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         emailLabel.setForeground(new Color(50, 50, 50));
-        emailLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        emailLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         emailField = createTextField();
 
@@ -88,7 +88,7 @@ public class RegisterFrame extends JFrame {
         JLabel passwordLabel = new JLabel("Password (min. 6 karakter)");
         passwordLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         passwordLabel.setForeground(new Color(50, 50, 50));
-        passwordLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        passwordLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         passwordField = new JPasswordField();
         passwordField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -104,7 +104,7 @@ public class RegisterFrame extends JFrame {
         JLabel confirmLabel = new JLabel("Konfirmasi Password");
         confirmLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         confirmLabel.setForeground(new Color(50, 50, 50));
-        confirmLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        confirmLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         confirmPasswordField = new JPasswordField();
         confirmPasswordField.setFont(new Font("Segoe UI", Font.PLAIN, 14));

@@ -84,9 +84,9 @@ Mengirim hasil ke View untuk ditampilkan
 
 
 
-📂 Struktur Folder (Contoh)
+## 📂 Struktur Folder (Contoh)
 
-**```bash**
+```bash
 VolSys-PP2-A-2525
 ├── .vscode/
 ├── lib/
@@ -95,35 +95,30 @@ VolSys-PP2-A-2525
 ├── src/
 │   ├── config/
 │   │   └── DatabaseConnection.java
-│   │
 │   ├── controller/
 │   │   ├── AuthController.java
 │   │   ├── UserController.java
 │   │   ├── EventController.java
 │   │   └── RegistrationController.java
-│   │
 │   ├── model/
 │   │   ├── User.java
 │   │   ├── Event.java
 │   │   └── Registration.java
-│   │
 │   ├── utils/
 │   │   ├── ValidationUtils.java
 │   │   ├── StyleUtils.java
 │   │   └── PDFExporter.java
-│   │
 │   ├── view/
 │   │   ├── LoginFrame.java
 │   │   ├── RegisterFrame.java
 │   │   ├── MainFrame.java
 │   │   ├── panels/
 │   │   └── dialogs/
-│   │
 │   └── Main.java
 ├── .gitignore
 ├── database_schema.sql
 └── database.properties
-**```**
+
 
 
 

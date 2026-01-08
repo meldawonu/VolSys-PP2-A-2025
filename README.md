@@ -86,6 +86,7 @@ Mengirim hasil ke View untuk ditampilkan
 
 📂 Struktur Folder (Contoh)
 
+**```bash**
 VolSys-PP2-A-2525
 ├── .vscode/
 ├── lib/
@@ -121,7 +122,9 @@ VolSys-PP2-A-2525
 │   └── Main.java
 ├── .gitignore
 ├── database_schema.sql
-├── database.properties
+└── database.properties
+**```**
+
 
 
 

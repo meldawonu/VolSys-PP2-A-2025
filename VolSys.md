@@ -152,7 +152,8 @@ Git & GitHub
 
 📌 Video demo dapat diakses melalui link berikut:
 *(https://youtu.be/wloOMWAHdos)*
-
+📌 Panduan penggunaan Aplikasi dapat diakses melalui link berikut:
+*(https://tinyurl.com/UserGuide-VolSys)*
 
 
 👨‍💻 Kontributor

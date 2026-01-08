@@ -142,10 +142,10 @@ Git & GitHub
 
 
 
-🎯 Tujuan Pengembangan
+🎯 Tujuan 
 
-Menerapkan konsep MVC dalam aplikasi Java Desktop
-Meningkatkan efisiensi pengelolaan data volunteer dan event
+- Menerapkan konsep MVC dalam aplikasi Java Desktop
+- Meningkatkan efisiensi pengelolaan data volunteer dan event
 
 
 📽 Demo Aplikasi
